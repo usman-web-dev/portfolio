@@ -1,87 +1,88 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-        <NuxtLogo />
-        <VuetifyLogo />
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation </a
-            >.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord </a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
+  <section
+    id="hero"
+    class="d-flex flex-column justify-center text-center text-lg-left"
+  >
+    <v-container>
+      <h1 class="text-lg-h2 text-h4 font-weight-medium mb-2 mb-lg-5">
+        Usman Developer
+      </h1>
+      <p class="text-h6 text-lg-h5 font-weight-regular">
+        I do
+        <client-only>
+          <VueTyper
+            :text="[
+              'Vue JS',
+              'React JS',
+              'Nest JS',
+              'Node JS',
+              'TypeScript',
+              'RxJS',
+              'Tailwind CSS',
+              'JavaScript',
+              'Vuetify'
+            ]"
+            :repeat="Infinity"
+            :shuffle="true"
+          />
+        </client-only>
+      </p>
+      <div class="d-flex gap-1 mt-5 justify-center justify-lg-start">
+        <v-hover
+          #default="{ hover }"
+          v-for="(icon, i) in [
+            'twitter',
+            'facebook',
+            'instagram',
+            'skype-business',
+            'linkedin'
+          ]"
+          :key="i"
+        >
+          <v-btn
+            icon
+            :color="hover ? 'primary' : 'secondary'"
+            :class="{ 'text--lighten-1': !hover }"
           >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+            <v-icon>mdi-{{ icon }}</v-icon>
+          </v-btn>
+        </v-hover>
+      </div>
+    </v-container>
+  </section>
 </template>
 
-<script>
-export default {
-  name: 'IndexPage',
+<script lang="ts">
+import Vue from 'vue';
+
+if (process.browser) {
+  var VueTyper = require('vue-typer').VueTyper;
 }
+
+export default Vue.extend({
+  components: {
+    VueTyper
+  }
+});
 </script>
+
+<style lang="scss" scoped>
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: url('/images/hero-bg.jpg') top right no-repeat;
+  background-size: cover;
+  position: relative;
+
+  &::before {
+    content: '';
+    background: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    inset: 0;
+  }
+
+  & > * {
+    z-index: 1;
+  }
+}
+</style>

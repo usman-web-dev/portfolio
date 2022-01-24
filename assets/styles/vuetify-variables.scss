@@ -1,0 +1,7 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+@import './partials/colors';
+
+$body-font-family: 'Poppins', sans-serif !default;
+$material-light: (
+  'text-color': red
+);
