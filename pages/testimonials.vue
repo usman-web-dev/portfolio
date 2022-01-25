@@ -2,45 +2,42 @@
   <v-container>
     <v-row justify="center" align="start">
       <v-col cols="12" lg="8">
-        <h2 class="text-h2 text-center mb-10 mt-5">Testimonials</h2>
+        <h2 class="text-h4 text-lg-h2 text-center mb-10 mt-5">Testimonials</h2>
 
-        <v-slide-group center-active v-model="model">
-          <v-slide-item
-            v-for="({ name, message }, i) in data"
-            :key="i"
-            #default="{ active, toggle }"
-          >
-            <v-card
-              class="ma-4 rounded-xl d-flex flex-column"
-              :color="active ? 'primary' : 'accent'"
-              dark
-              max-width="800"
-              @click="toggle"
-            >
-              <v-card-title>
-                <Upwork />
-                <span class="text-h6 font-weight-light">Upwork</span>
-              </v-card-title>
+        <v-card
+          v-for="({ name, message }, i) in data"
+          :key="i"
+          class="my-10 rounded-xl d-flex flex-column px-5 message"
+          :color="i % 2 ? 'primary' : 'secondary'"
+          dark
+        >
+          <v-card-title>
+            <Upwork size="36" />
+            <span class="text-h6 font-weight-light">Upwork</span>
+          </v-card-title>
 
-              <v-card-text
-                class="text-h5 font-weight-bold flex-grow-1 message"
-                v-html="message"
-              />
+          <v-card-text
+            class="
+              text-lg-h5 text-body-1
+              font-weight-bold
+              flex-grow-1
+              message-text
+            "
+            v-html="message"
+          />
 
-              <v-card-actions>
-                <v-list-item class="grow">
-                  <v-list-item-avatar color="grey darken-3">
-                    <v-img class="elevation-6" alt="" :src="avatar"></v-img>
-                  </v-list-item-avatar>
+          <v-card-actions>
+            <v-list-item class="grow">
+              <v-list-item-avatar color="grey darken-3">
+                <v-img class="elevation-6" alt="" :src="avatar"></v-img>
+              </v-list-item-avatar>
 
-                  <v-list-item-content>
-                    <v-list-item-title>{{ name }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-card-actions>
-            </v-card>
-          </v-slide-item>
-        </v-slide-group>
+              <v-list-item-content>
+                <v-list-item-title>{{ name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-card-actions>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -86,10 +83,8 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .message {
-  text-align: justify;
-
-  &::first-letter {
-    font-size: 50px !important;
+  &-text {
+    text-align: justify;
   }
 }
 </style>

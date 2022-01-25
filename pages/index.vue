@@ -30,21 +30,30 @@
       <div class="d-flex gap-1 mt-5 justify-center justify-lg-start">
         <v-hover
           #default="{ hover }"
-          v-for="(icon, i) in [
-            'twitter',
-            'facebook',
-            'instagram',
-            'skype-business',
-            'linkedin'
-          ]"
+          v-for="([icon, name], i) in Object.entries({
+            upwork: 'https://www.upwork.com/freelancers/~01d6585638be81082c',
+            facebook: 'https://www.facebook.com/profile.php?id=100013610145527',
+            instagram: 'https://www.instagram.com/usman_dev3/',
+            'skype-business': 'https://join.skype.com/invite/uINIewrP5BOt',
+            linkedin:
+              'https://www.linkedin.com/in/muhammad-usman-javed-9357591a9/'
+          })"
           :key="i"
         >
           <v-btn
             icon
             :color="hover ? 'primary' : 'secondary'"
             :class="{ 'text--lighten-1': !hover }"
+            :href="name"
+            target="__blank"
           >
-            <v-icon>mdi-{{ icon }}</v-icon>
+            <v-icon v-if="icon !== 'upwork'">mdi-{{ icon }}</v-icon>
+            <Upwork
+              v-else
+              :color="
+                $vuetify.theme.currentTheme[hover ? 'primary' : 'secondary']
+              "
+            />
           </v-btn>
         </v-hover>
       </div>
