@@ -55,6 +55,23 @@ export default Vue.extend({
     lgAndUp() {
       return this.$vuetify.breakpoint.lgAndUp;
     }
+  },
+  head() {
+    const helpers = {
+      upperFirst(text: string) {
+        return text.charAt(0).toUpperCase() + text.slice(1);
+      },
+
+      unslugify(text: string) {
+        return text
+          .replace(/-/g, ' ')
+          .replace(/\w\S*/g, (str) => helpers.upperFirst(str));
+      }
+    };
+
+    return {
+      title: helpers.upperFirst(helpers.unslugify(this.$route.name ?? ''))
+    };
   }
 });
 </script>

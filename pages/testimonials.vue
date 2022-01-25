@@ -12,7 +12,7 @@
           dark
         >
           <v-card-title>
-            <Upwork size="36" />
+            <Upwork :size="36" />
             <span class="text-h6 font-weight-light">Upwork</span>
           </v-card-title>
 

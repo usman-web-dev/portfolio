@@ -6,8 +6,7 @@ const config: NuxtConfig = {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - portfolio',
-    title: 'portfolio',
+    titleTemplate: 'Usman Dev - %s',
     htmlAttrs: {
       lang: 'en'
     },

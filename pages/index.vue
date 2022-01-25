@@ -32,20 +32,19 @@
           #default="{ hover }"
           v-for="([icon, name], i) in Object.entries({
             upwork: 'https://www.upwork.com/freelancers/~01d6585638be81082c',
-            facebook: 'https://www.facebook.com/profile.php?id=100013610145527',
-            instagram: 'https://www.instagram.com/usman_dev3/',
-            'skype-business': 'https://join.skype.com/invite/uINIewrP5BOt',
+            github: 'https://github.com/usman-web-dev',
             linkedin:
-              'https://www.linkedin.com/in/muhammad-usman-javed-9357591a9/'
+              'https://www.linkedin.com/in/muhammad-usman-javed-9357591a9',
+            facebook: 'https://www.facebook.com/profile.php?id=100013610145527',
+            'skype-business': 'https://join.skype.com/invite/uINIewrP5BOt'
           })"
           :key="i"
         >
           <v-btn
             icon
             :color="hover ? 'primary' : 'secondary'"
-            :class="{ 'text--lighten-1': !hover }"
             :href="name"
-            target="__blank"
+            target="_blank"
           >
             <v-icon v-if="icon !== 'upwork'">mdi-{{ icon }}</v-icon>
             <Upwork
