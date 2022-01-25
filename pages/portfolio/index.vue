@@ -127,8 +127,7 @@ export default {
           'Managed development milestones from initial steps through final delivery.',
           'Mostly used VueJS, NuxtJS on front-end and NestJS on back-end with spice of TypeScript',
           `<strong>Top Rated</strong>: <a href="https://www.upwork.com/freelancers/~01d6585638be81082c">Link to profile</a>`
-        ],
-        link: 'upwork'
+        ]
       },
       {
         color: 'amber',
