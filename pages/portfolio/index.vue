@@ -139,7 +139,7 @@ export default {
         company: 'IT Curves',
         title: 'Full Stack Web Developer',
         points: [
-          'Joined to work on SaaS based Web Apps. UedVueJS, ReactJS, TypeScript, RxJS on frontend, NodeJS and LoopBack on backend APIs and Flutter for mobile apps.',
+          'Joined to work on SaaS based Web Apps. Used VueJS, ReactJS, TypeScript, RxJS on frontend, NodeJS and LoopBack on backend APIs and Flutter for mobile apps.',
           'Discussed project progress with clients, collected feedback on different stages and directly addressed concerns.'
         ],
         link: 'it-curves'

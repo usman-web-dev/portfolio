@@ -23,8 +23,8 @@
             <template
               v-for="([text, name], i) in Object.entries({
                 Portfolio: 'portfolio',
-                'Contact Me': 'contact',
-                Testimonials: 'testimonials'
+                Testimonials: 'testimonials',
+                'Contact Me': 'contact'
               })"
             >
               <v-btn
