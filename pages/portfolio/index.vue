@@ -1,75 +1,100 @@
 <template>
   <v-container>
     <v-row justify="center" align="start">
-      <v-col cols="12" lg="8">
+      <v-col cols="12" xl="8">
         <h2 class="text-h4 text-lg-h2 text-center mb-10 mt-5">Portfolio</h2>
         <client-only>
-          <v-timeline
-            :reverse="lgAndUp"
-            :dense="!lgAndUp"
-            :align-top="!lgAndUp"
-          >
-            <v-timeline-item
-              v-for="(
-                { color, year, points, company, title, link }, i
-              ) in years"
-              :key="i"
-              :color="color"
-              small
+          <v-card class="pr-4 pa-lg-10 mb-4 rounded-xl my-card shadow" outlined>
+            <v-timeline
+              :reverse="lgAndUp"
+              :dense="!lgAndUp"
+              :align-top="!lgAndUp"
             >
-              <template #opposite>
-                <span
-                  :class="`headline font-weight-bold ${color}--text`"
-                  v-text="year"
-                />
-              </template>
-              <div class="py-lg-4">
-                <h2
-                  class="text-h6 text-lg-h4"
-                  :class="`headline font-weight-light ${color}--text`"
-                >
-                  {{ company }}
-                </h2>
-                <span
-                  :class="`text-overline font-weight-bold ${color}--text ml-1`"
-                  v-text="year"
-                  v-if="!lgAndUp && year"
-                />
-                <p
-                  class="font-weight-light text-caption text-lg-subtitle-2 ml-1"
-                >
-                  {{ title }}
-                </p>
-                <div>
-                  <ul>
-                    <li
-                      v-for="(point, idx) in points"
-                      :key="idx"
-                      class="
-                        mb-3 mb-lg-5
-                        text-subtitle-2 text-lg-body-1
-                        font-weight-regular
-                      "
-                      v-html="point"
-                    />
-                  </ul>
-                </div>
+              <v-timeline-item
+                v-for="(
+                  {
+                    color,
+                    year,
+                    points,
+                    company,
+                    title,
+                    link,
+                    linkText,
+                    linkUrl
+                  },
+                  i
+                ) in years"
+                :key="i"
+                :color="color"
+                small
+              >
+                <template #opposite>
+                  <span
+                    :class="`headline font-weight-bold ${color}--text`"
+                    v-text="year"
+                  />
+                </template>
+                <div class="py-lg-4">
+                  <h2
+                    class="text-h6 text-lg-h4"
+                    :class="`headline font-weight-light ${color}--text`"
+                  >
+                    {{ company }}
+                  </h2>
+                  <span
+                    :class="`text-overline font-weight-bold ${color}--text ml-1`"
+                    v-text="year"
+                    v-if="!lgAndUp && year"
+                  />
+                  <p
+                    class="
+                      font-weight-light
+                      text-caption text-lg-subtitle-2
+                      ml-1
+                    "
+                  >
+                    {{ title }}
+                  </p>
+                  <div>
+                    <ul>
+                      <li
+                        v-for="(point, idx) in points"
+                        :key="idx"
+                        class="
+                          mb-3 mb-lg-5
+                          text-subtitle-2 text-lg-body-1
+                          font-weight-regular
+                        "
+                        v-html="point"
+                      />
+                    </ul>
+                  </div>
 
-                <v-btn
-                  :color="color"
-                  small
-                  dark
-                  v-if="link"
-                  nuxt
-                  :to="{ name: 'portfolio-company', params: { company: link } }"
-                  outlined
-                >
-                  View More
-                  <v-icon small class="ml-2">mdi-arrow-right</v-icon>
-                </v-btn>
-              </div>
-            </v-timeline-item>
-          </v-timeline>
+                  <v-btn
+                    :color="color"
+                    small
+                    dark
+                    v-if="link || linkText"
+                    nuxt
+                    :href="linkUrl"
+                    :target="linkUrl ? '_blank' : undefined"
+                    :to="
+                      linkUrl
+                        ? undefined
+                        : {
+                            name: 'portfolio-company',
+                            params: { company: link }
+                          }
+                    "
+                    outlined
+                  >
+                    {{ linkText || 'View More' }}
+                    <v-icon small class="ml-2">mdi-arrow-right</v-icon>
+                  </v-btn>
+                </div>
+              </v-timeline-item>
+            </v-timeline>
+          </v-card>
         </client-only>
       </v-col>
     </v-row>
@@ -88,12 +113,14 @@ export default {
       {
         color: 'primary',
         year: '',
-        company: 'Usman Developer',
+        company: 'Muhammad Usman Javed',
         title: '',
         points: [
           `I'm an experienced software engineer who constantly seeks out innovative solutions to everyday problems.`,
           `In my three years plus experience in this field, I've honed my analytical thinking and collaboration skills, and I love working with a team.`
-        ]
+        ],
+        link: 'personal',
+        linkText: 'Personal Projects'
       },
       {
         color: 'cyan',
@@ -126,8 +153,10 @@ export default {
           'Designed and developed efficient and maintainable software according to business objectives and needs of various clients.',
           'Managed development milestones from initial steps through final delivery.',
           'Mostly used VueJS, NuxtJS on front-end and NestJS on back-end with spice of TypeScript',
-          `<strong>Top Rated</strong>: <a href="https://www.upwork.com/freelancers/~01d6585638be81082c">Link to profile</a>`
-        ]
+          `<strong>Top Rated</strong>`
+        ],
+        linkText: 'View Profile',
+        linkUrl: 'https://www.upwork.com/freelancers/~01d6585638be81082c'
       },
       {
         color: 'amber',

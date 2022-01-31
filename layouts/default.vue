@@ -6,34 +6,66 @@
         :small="lgAndUp"
         :x-small="!lgAndUp"
         nuxt
-        to="/"
+        :to="isPortfolioRoute ? '/portfolio' : '/'"
+        exact
         :style="`opacity: ${+($route.name !== 'index')}`"
       >
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
 
       <client-only>
-        <div class="d-flex mx-auto justify-center flex-wrap">
-          <template
-            v-for="([text, name], i) in Object.entries({
-              Portfolio: 'portfolio',
-              'Contact Me': 'contact',
-              Testimonials: 'testimonials'
-            })"
+        <v-slide-x-transition hide-on-leave>
+          <div
+            class="d-flex mx-auto justify-center flex-wrap"
+            v-if="!isPortfolioRoute"
+            :key="isPortfolioRoute"
           >
-            <v-btn
-              color="secondary"
-              text
-              :small="lgAndUp"
-              :x-small="!lgAndUp"
-              :key="i"
-              nuxt
-              :to="{ name }"
+            <template
+              v-for="([text, name], i) in Object.entries({
+                Portfolio: 'portfolio',
+                'Contact Me': 'contact',
+                Testimonials: 'testimonials'
+              })"
             >
-              {{ text }}
-            </v-btn>
-          </template>
-        </div>
+              <v-btn
+                color="secondary"
+                text
+                :small="lgAndUp"
+                :x-small="!lgAndUp"
+                :key="i"
+                nuxt
+                :to="{ name }"
+              >
+                {{ text }}
+              </v-btn>
+            </template>
+          </div>
+          <div
+            class="d-flex mx-auto justify-center flex-wrap"
+            :key="isPortfolioRoute"
+            v-else
+          >
+            <template
+              v-for="([text, name], i) in Object.entries({
+                'Coeus Solutions': 'coeus',
+                'It Curves': 'it-curves',
+                Personal: 'personal'
+              })"
+            >
+              <v-btn
+                color="secondary"
+                text
+                :small="lgAndUp"
+                :x-small="!lgAndUp"
+                :key="i"
+                nuxt
+                :to="{ name: 'portfolio-company', params: { company: name } }"
+              >
+                {{ text }}
+              </v-btn>
+            </template>
+          </div>
+        </v-slide-x-transition>
       </client-only>
     </v-app-bar>
 
@@ -54,6 +86,9 @@ export default Vue.extend({
   computed: {
     lgAndUp() {
       return this.$vuetify.breakpoint.lgAndUp;
+    },
+    isPortfolioRoute() {
+      return this.$route.fullPath.search(/\/portfolio\/(.*)/) !== -1;
     }
   },
   head() {

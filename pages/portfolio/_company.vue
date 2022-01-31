@@ -1,15 +1,16 @@
 <template>
   <v-container>
     <v-row justify="center" align="start">
-      <v-col cols="12" lg="6">
+      <v-col cols="12" lg="8" xl="6">
         <h2 class="text-h4 text-lg-h2 text-center mb-10 mt-5">
           {{ Data.name }}
         </h2>
 
         <v-card
-          v-for="({ name, description, link, roles, tech }, i) in Data.projects"
-          :key="i"
-          class="rounded-xl pa-4 mb-4"
+          v-for="{ name, description, link, data } in Data.projects"
+          :key="name"
+          class="pa-4 mb-4 rounded-xl my-card shadow"
+          outlined
         >
           <h2
             class="text-h6 text-lg-h4"
@@ -17,38 +18,29 @@
           >
             {{ name }}
           </h2>
-          <a :href="link" class="text-caption" v-if="link">{{ link }}</a>
+          <a :href="link" class="text-caption" v-if="link" target="_blank">
+            {{ link }}
+          </a>
           <p class="font-weight-light text-caption text-lg-subtitle-2 mt-4">
             {{ description }}
           </p>
 
-          <h5 class="text-h5 mb-3 secondary--text">My Roles</h5>
-          <ul>
-            <li
-              v-for="(role, idx) in roles"
-              :key="idx"
-              class="
-                mb-3 mb-lg-5
-                text-subtitle-2 text-lg-body-1
-                font-weight-light
-              "
-              v-html="role"
-            />
-          </ul>
+          <div v-for="([key, value], idx) in Object.entries(data)" :key="idx">
+            <div class="font-weight-bold mb-2">{{ key }}</div>
 
-          <h5 class="text-h5 mb-3 secondary--text">Tech Stack</h5>
-          <ul>
-            <li
-              v-for="(tech, idx) in tech"
-              :key="idx"
-              class="
-                mb-3 mb-lg-5
-                text-subtitle-2 text-lg-body-1
-                font-weight-light
-              "
-              v-html="tech"
-            />
-          </ul>
+            <v-timeline align-top dense>
+              <v-timeline-item
+                v-for="(v, idx) in value"
+                :key="idx"
+                small
+                :color="colors[Math.floor(Math.random() * colors.length)]"
+              >
+                <div>
+                  {{ v }}
+                </div>
+              </v-timeline-item>
+            </v-timeline>
+          </div>
         </v-card>
       </v-col>
     </v-row>
@@ -59,7 +51,71 @@
 export default {
   data() {
     return {
+      colors: [
+        'success',
+        'secondary',
+        'primary',
+        'warning',
+        'amber',
+        'pink',
+        'grey',
+        'accent'
+      ],
       data: {
+        personal: {
+          name: 'Personal Projects',
+          projects: [
+            {
+              name: 'Baken Eat',
+              description:
+                'Baken Eat was a test project to get hands-on with VuetifyJS and VueJS.',
+              link: 'http://baken-eat.herokuapp.com/',
+              data: {
+                'My Roles': [
+                  'Worked on front-end.',
+                  'Made fully custom design of it.',
+                  "Also worked on it's backend using Java."
+                ],
+                'Tech Stack': [
+                  'VueJS',
+                  'VuetifyJS',
+                  'TypeScript',
+                  'Spring Boot (Java)',
+                  'Hibernate'
+                ]
+              }
+            },
+            {
+              name: 'Phonebook',
+              description:
+                'Phonebook was a test project to get hands-on with VueSax.',
+              link: 'https://usmanjavedattari.github.io/phonebook/',
+              data: {
+                'My Roles': [
+                  'Worked on front-end.',
+                  'Used stack data-structure to handle out phonebook data.',
+                  'Learned VueSax 4 UI framework.'
+                ],
+                'Tech Stack': ['VueJS', 'VueSax', 'RxJS']
+              }
+            },
+            {
+              name: 'Algo Visualization',
+              description:
+                'Algo Visualization was a test project to get hands-on with Vue 3 (latest version).',
+              link: 'https://usmanjavedattari.github.io/algo-visualization?dummyData=true&graphs=true',
+              data: {
+                'My Roles': [
+                  'Got started with Vue 3.',
+                  'Learned composition API.',
+                  'Worked with composible functions.',
+                  'Worked with graphs to show data visually.'
+                ],
+                'Tech Stack': ['VueJS 3', 'Bootstrap', 'ChartJS']
+              }
+            }
+          ]
+        },
         coeus: {
           name: 'Coeus Solution GmbH',
           projects: [
@@ -68,21 +124,25 @@ export default {
               description:
                 'BRAVO is a multi-functional employee rewards & recognition platform, tailor-made for the needs of your Millennial and Gen Z employees.',
               link: 'https://getbravo.io/',
-              roles: [
-                'Made slack app and successfully hosted it on slack store.',
-                'Made Microsoft Teams app and successfully hosted it on Microsoft store.'
-              ],
-              tech: ['PHP', 'NodeJS', 'VueJS', 'NuxtJS']
+              data: {
+                'My Roles': [
+                  'Made slack app and successfully hosted it on slack store.',
+                  'Made Microsoft Teams app and successfully hosted it on Microsoft store.'
+                ],
+                'Tech Stack': ['PHP', 'NodeJS', 'VueJS', 'NuxtJS']
+              }
             },
             {
               name: '360Dialog',
               description:
                 'WhatsApp Business API & Mobile Automation Solutions',
               link: 'https://www.360dialog.com/',
-              roles: [
-                'Worked on JIRA app to connect WhatsApp and JIRA using plugins.'
-              ],
-              tech: ['NodeJS', 'Python']
+              data: {
+                'My Roles': [
+                  'Worked on JIRA app to connect WhatsApp and JIRA using plugins.'
+                ],
+                'Tech Stack': ['NodeJS', 'Python']
+              }
             }
           ]
         },
@@ -94,25 +154,48 @@ export default {
               description:
                 '3-Step process provides divorcing couples with divorce documents guaranteed to be accepted by the courts.',
               link: 'https://ourdivorce.com/',
-              roles: [
-                'Gathered up the requirements.',
-                'Implemented from start to end.'
-              ],
-              tech: ['NodeJS', 'VueJS', 'LoopBack 4']
+              data: {
+                'My Roles': [
+                  'Gathered up the requirements.',
+                  'Implemented from start to end.'
+                ],
+                'Tech Stack': ['NodeJS', 'VueJS', 'LoopBack 4']
+              }
             },
             {
-              name: 'BlueBox 360',
+              name: '(Hidden due to privacy)',
               description:
                 'Generalized management dashboard, having quite powerful modules to manage out different organizations tasks, like employees/stock/retails etc.',
-              roles: [
-                'Worked on front-end side using VueJS.',
-                'Worked as a team-lead and lead 2 developers'
-              ],
-              tech: ['NodeJS', 'VueJS', 'LoopBack 4', 'Vuetify']
+              data: {
+                'My Roles': [
+                  'Worked on front-end side using VueJS.',
+                  'Worked as a team-lead and lead 2 developers.'
+                ],
+                'Tech Stack': ['NodeJS', 'VueJS', 'LoopBack 4', 'Vuetify']
+              }
+            },
+            {
+              name: '(Hidden due to privacy)',
+              data: {
+                'My Roles': [
+                  'Converted React to VueJS.',
+                  'Helped out junior developers on how to structure the project.'
+                ],
+                'Tech Stack': ['VueJS', '.Net MVC', 'Vuetify']
+              }
+            },
+            {
+              name: '(Hidden due to privacy)',
+              data: {
+                'My Roles': [
+                  'Worked with junior developers to restructure the project on VueJS.',
+                  'Helped out flutter developer to finalize the cross-platform app.'
+                ],
+                'Tech Stack': ['VueJS', 'Loopback 4', 'Vuetify', 'Flutter']
+              }
             }
           ]
-        },
-        upwork: { name: 'Upwork' }
+        }
       }
     };
   },

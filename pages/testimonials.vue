@@ -7,7 +7,7 @@
         <v-card
           v-for="({ name, message }, i) in data"
           :key="i"
-          class="my-10 rounded-xl d-flex flex-column px-5 message"
+          class="my-10 rounded-xl d-flex flex-column px-5 message shadow"
           :color="i % 2 ? 'primary' : 'secondary'"
           dark
         >
