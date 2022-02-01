@@ -56,6 +56,31 @@
           </v-btn>
         </v-hover>
       </div>
+
+      <div class="mt-3 mt-lg-5">
+        <v-btn
+          small
+          color="primary"
+          text
+          class="px-0"
+          href="https://drive.google.com/file/d/1yao0bzwrcXDzDbfUGgaNogT8SpH68q-G/view"
+          target="_blank"
+        >
+          <v-icon small class="mr-2">mdi-download</v-icon>
+          Download CV
+        </v-btn>
+      </div>
+      <v-btn
+        small
+        color="primary"
+        text
+        class="px-0"
+        href="https://drive.google.com/file/d/1n18QNPD4HIXPJM25mftJthCsn7HfvHDU/view"
+        target="_blank"
+      >
+        <v-icon small class="mr-2">mdi-download</v-icon>
+        Download Cover Letter
+      </v-btn>
     </v-container>
   </section>
 </template>
