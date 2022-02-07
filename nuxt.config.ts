@@ -52,7 +52,11 @@ const config: NuxtConfig = {
     '@nuxtjs/pwa'
   ],
 
-  pwa: {},
+  pwa: {
+    manifest: {
+      theme_color: '#0563bb'
+    }
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

@@ -104,8 +104,13 @@ export default Vue.extend({
       }
     };
 
+    const {
+      name,
+      params: { company }
+    } = this.$route;
+
     return {
-      title: helpers.upperFirst(helpers.unslugify(this.$route.name ?? ''))
+      title: helpers.upperFirst(helpers.unslugify(company ?? name))
     };
   }
 });

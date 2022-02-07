@@ -95,6 +95,11 @@ if (process.browser) {
 export default Vue.extend({
   components: {
     VueTyper
+  },
+  head() {
+    return {
+      titleTemplate: 'Usman Dev'
+    };
   }
 });
 </script>
