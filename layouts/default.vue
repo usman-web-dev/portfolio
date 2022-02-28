@@ -24,7 +24,9 @@
               v-for="([text, name], i) in Object.entries({
                 Portfolio: 'portfolio',
                 Testimonials: 'testimonials',
-                'Contact Me': 'contact'
+                ...($route.query.personal === '0'
+                  ? {}
+                  : { 'Contact Me': 'contact' })
               })"
             >
               <v-btn

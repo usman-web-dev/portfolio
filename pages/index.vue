@@ -33,10 +33,15 @@
           v-for="([icon, name], i) in Object.entries({
             upwork: 'https://www.upwork.com/freelancers/~01d6585638be81082c',
             github: 'https://github.com/usman-web-dev',
-            linkedin:
-              'https://www.linkedin.com/in/muhammad-usman-javed-9357591a9',
-            facebook: 'https://www.facebook.com/profile.php?id=100013610145527',
-            'skype-business': 'https://join.skype.com/invite/uINIewrP5BOt'
+            ...(noPersonal
+              ? {}
+              : {
+                  linkedin:
+                    'https://www.linkedin.com/in/muhammad-usman-javed-9357591a9',
+                  facebook:
+                    'https://www.facebook.com/profile.php?id=100013610145527',
+                  'skype-business': 'https://join.skype.com/invite/uINIewrP5BOt'
+                })
           })"
           :key="i"
         >
@@ -57,30 +62,32 @@
         </v-hover>
       </div>
 
-      <div class="mt-3 mt-lg-5">
+      <div v-if="!noPersonal">
+        <div class="mt-3 mt-lg-5">
+          <v-btn
+            small
+            color="primary"
+            text
+            class="px-0"
+            href="https://drive.google.com/file/d/1yao0bzwrcXDzDbfUGgaNogT8SpH68q-G/view"
+            target="_blank"
+          >
+            <v-icon small class="mr-2">mdi-download</v-icon>
+            Download CV
+          </v-btn>
+        </div>
         <v-btn
           small
           color="primary"
           text
           class="px-0"
-          href="https://drive.google.com/file/d/1yao0bzwrcXDzDbfUGgaNogT8SpH68q-G/view"
+          href="https://drive.google.com/file/d/1n18QNPD4HIXPJM25mftJthCsn7HfvHDU/view"
           target="_blank"
         >
           <v-icon small class="mr-2">mdi-download</v-icon>
-          Download CV
+          Download Cover Letter
         </v-btn>
       </div>
-      <v-btn
-        small
-        color="primary"
-        text
-        class="px-0"
-        href="https://drive.google.com/file/d/1n18QNPD4HIXPJM25mftJthCsn7HfvHDU/view"
-        target="_blank"
-      >
-        <v-icon small class="mr-2">mdi-download</v-icon>
-        Download Cover Letter
-      </v-btn>
     </v-container>
   </section>
 </template>
@@ -100,6 +107,11 @@ export default Vue.extend({
     return {
       titleTemplate: 'Usman Dev'
     };
+  },
+  computed: {
+    noPersonal() {
+      return this.$route.query.personal === '0';
+    }
   }
 });
 </script>

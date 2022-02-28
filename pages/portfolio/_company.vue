@@ -7,8 +7,8 @@
         </h2>
 
         <v-card
-          v-for="{ name, description, link, data } in Data.projects"
-          :key="name"
+          v-for="({ name, description, link, data }, i) in Data.projects"
+          :key="i"
           class="pa-4 mb-4 rounded-xl my-card shadow"
           outlined
         >
