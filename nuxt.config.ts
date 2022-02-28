@@ -4,6 +4,10 @@ const config: NuxtConfig = {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  generate: {
+    routes: ['personal', 'coeus', 'it-curves'].map((x) => `/portfolio/${x}`)
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: 'Usman Dev - %s',
