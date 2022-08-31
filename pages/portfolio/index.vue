@@ -72,7 +72,7 @@
                     }"
                     outlined
                   >
-                    {{ linkText || 'View More' }}
+                    {{ linkText || 'View Projects' }}
                     <v-icon small class="ml-2">mdi-arrow-right</v-icon>
                   </v-btn>
                 </div>
