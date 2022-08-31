@@ -69,7 +69,7 @@
             color="primary"
             text
             class="px-0"
-            href="https://drive.google.com/file/d/1yao0bzwrcXDzDbfUGgaNogT8SpH68q-G/view"
+            href="https://drive.google.com/file/d/15-HW5aaoNKx8e39ZWLiA50xfxdSlmgEN/view"
             target="_blank"
           >
             <v-icon small class="mr-2">mdi-download</v-icon>
