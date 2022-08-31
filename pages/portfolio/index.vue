@@ -12,17 +12,7 @@
             >
               <v-timeline-item
                 v-for="(
-                  {
-                    color,
-                    year,
-                    points,
-                    company,
-                    title,
-                    link,
-                    linkText,
-                    linkUrl
-                  },
-                  i
+                  { color, year, points, company, title, link, linkText }, i
                 ) in years"
                 :key="i"
                 :color="color"
@@ -65,7 +55,7 @@
                           text-subtitle-2 text-lg-body-1
                           font-weight-regular
                         "
-                        v-html="point"
+                        v-html="$md.render(point)"
                       />
                     </ul>
                   </div>
@@ -76,16 +66,10 @@
                     dark
                     v-if="link || linkText"
                     nuxt
-                    :href="linkUrl"
-                    :target="linkUrl ? '_blank' : undefined"
-                    :to="
-                      linkUrl
-                        ? undefined
-                        : {
-                            name: 'portfolio-company',
-                            params: { company: link }
-                          }
-                    "
+                    :to="{
+                      name: 'portfolio-company',
+                      params: { company: link }
+                    }"
                     outlined
                   >
                     {{ linkText || 'View More' }}
@@ -117,46 +101,53 @@ export default {
         title: '',
         points: [
           `I'm an experienced software engineer who constantly seeks out innovative solutions to everyday problems.`,
-          `In my three years plus experience in this field, I've honed my analytical thinking and collaboration skills, and I love working with a team.`
+          `In my four years plus experience in this field, I've honed my analytical thinking and collaboration skills, and I love working with a team.`,
+          `I keep myself up to date with the latest technologies and concentrates on customers' ideas and wishes.`,
+          `I am eager to work on challenging software development and engineering projects.`,
+          `**Current Focus:** Vue/Nuxt 3, E2E Testing, Web 3`
         ],
         link: 'personal',
         linkText: 'Personal Projects'
       },
       {
-        color: 'cyan',
-        year: '2021 - Present',
-        company: 'Coeus Solutions GmbH',
-        title: 'Full Stack Software Engineer',
+        color: 'green',
+        year: '2019 - Present',
+        company: 'Freelance',
+        title: 'Senior Software Engineer',
         points: [
-          'Wrote server-side and client-side code using PHP and JavaScript, specifically with ReactJS and Symfony frameworks.',
-          'Integrated several different APIs such as Slack, MS-Teams and Jira using NodeJS and TypeScript.'
+          `Designed and developed efficient and maintainable software following various clients' business objectives and needs.`,
+          'Managed development milestones from initial steps to final delivery.',
+          'Mostly used Vue/NuxtJS/React on the front end, and NestJS/Laravel on the back end with spice of TypeScript.',
+          'Used agile scrum and kanban workflows on Jira with GitHub as version control.',
+          '**Visit profiles:** [Upwork](https://www.upwork.com/freelancers/~01d6585638be81082c), [Toptal](https://www.toptal.com/resume/muhammad-usman-javed)'
+        ],
+        link: 'freelance'
+      },
+      {
+        color: 'cyan',
+        year: '2021 - 2022',
+        company: 'Coeus Solutions GmbH',
+        title: 'Software Engineer',
+        points: [
+          'Wrote server-side and client-side code using PHP and JavaScript, specifically with React and Symfony frameworks.',
+          'Integrated several different APIs, such as Slack, Microsoft Teams, WhatsApp Business, and Jira, using NodeJS and TypeScript.',
+          'Strictly followed "Agile Kanban" practices on Jira under supervision of an experienced project manager.',
+          'Followed proper development workflow including Jira tickets, standard pull requests and code reviews with the team.',
+          'Collaborated with the CEO on their products, including [WorkHub](https://workhub.ai) and [BRAVO](https://getbravo.io).'
         ],
         link: 'coeus'
       },
       {
-        color: 'green',
+        color: 'pink',
         year: '2019 - 2021',
         company: 'IT Curves',
         title: 'Full Stack Web Developer',
         points: [
-          'Joined to work on SaaS based Web Apps. Used VueJS, ReactJS, TypeScript, RxJS on frontend, NodeJS and LoopBack on backend APIs and Flutter for mobile apps.',
-          'Discussed project progress with clients, collected feedback on different stages and directly addressed concerns.'
+          'Joined the company to work on SaaS-based web-apps. Used Vue, React, TypeScript, RxJS on the front end, NodeJS and Loopback on the back end APIs, and Flutter for mobile apps.',
+          'Discussed the project progress with clients, collected feedback on different stages, and directly addressed concerns.',
+          'Assisted new team members in onboarding and helped them learn technology stacks.'
         ],
         link: 'it-curves'
-      },
-      {
-        color: 'pink',
-        year: '2019 - Present',
-        company: 'Upwork Inc.',
-        title: 'Independent Full Stack Web Developer',
-        points: [
-          'Designed and developed efficient and maintainable software according to business objectives and needs of various clients.',
-          'Managed development milestones from initial steps through final delivery.',
-          'Mostly used VueJS, NuxtJS on front-end and NestJS on back-end with spice of TypeScript',
-          `<strong>Top Rated</strong>`
-        ],
-        linkText: 'View Profile',
-        linkUrl: 'https://www.upwork.com/freelancers/~01d6585638be81082c'
       },
       {
         color: 'amber',

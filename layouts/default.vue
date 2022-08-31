@@ -49,8 +49,9 @@
           >
             <template
               v-for="([text, name], i) in Object.entries({
+                Freelance: 'freelance',
                 'Coeus Solutions': 'coeus',
-                'It Curves': 'it-curves',
+                'IT Curves': 'it-curves',
                 Personal: 'personal'
               })"
             >
@@ -90,7 +91,7 @@ export default Vue.extend({
       return this.$vuetify.breakpoint.lgAndUp;
     },
     isPortfolioRoute() {
-      return this.$route.fullPath.search(/\/portfolio\/(.*)/) !== -1;
+      return this.$route.fullPath.search(/\/portfolio\/(.+)/) !== -1;
     }
   },
   head() {

@@ -20,7 +20,8 @@
       "@nuxtjs/axios",
       "@types/node",
       "@nuxtjs/vuetify",
-      "@nuxtjs/pwa"
+      "@nuxtjs/pwa",
+      "@nuxtjs/markdownit"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
